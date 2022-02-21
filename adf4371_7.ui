@@ -1,0 +1,1649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>adf4371</class>
+ <widget class="QWidget" name="adf4371">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>788</width>
+    <height>479</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ADF4371</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <widget class="QGroupBox" name="pfd">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>161</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>PFD Frequency</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <layout class="QFormLayout" name="pfdLayout">
+      <property name="horizontalSpacing">
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>2</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="rFInputLabel">
+        <property name="text">
+         <string>RF</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="rFInputLineEdit"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="rFinModeLabel">
+        <property name="text">
+         <string>RFMode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="rFinModeComboBox">
+        <item>
+         <property name="text">
+          <string>Single</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Differential</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="doublerLabel">
+        <property name="text">
+         <string>Doubler</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="doublerComboBox">
+        <item>
+         <property name="text">
+          <string>Off</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>On</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="rDividerLabel">
+        <property name="text">
+         <string>RDivider</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="rDividerLineEdit"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="divideBy2Label">
+        <property name="text">
+         <string>DivideBy2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="divideBy2ComboBox">
+        <item>
+         <property name="text">
+          <string>Off</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>On</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="vco">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>161</width>
+     <height>311</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>VCO</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QFormLayout" name="vcoLayout">
+      <property name="verticalSpacing">
+       <number>2</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="enableAutoModeLabel">
+        <property name="text">
+         <string>AutoMode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="vCOLabel">
+        <property name="text">
+         <string>VCOFreq</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="vCOLineEdit"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="outputDividerLabel">
+        <property name="text">
+         <string>Divider</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="outputDividerComboBox">
+        <item>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>4</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>8</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>16</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>64</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="pFDFreqLabelRF8">
+        <property name="text">
+         <string>RF8Freq</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="pFDFreqLineEditRF8">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="rF16FreqLabel">
+        <property name="text">
+         <string>RF16Freq</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="rF16FreqLineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="rF32FreqLabel">
+        <property name="text">
+         <string>RF32Freq</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLineEdit" name="rF32FreqLineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="pFDFreqLabel_PFD">
+        <property name="text">
+         <string>PFD</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLineEdit" name="pFDFreqLineEdit_PFD">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="nLabel">
+        <property name="text">
+         <string>N</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLineEdit" name="nLineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="iNTLabel">
+        <property name="text">
+         <string>INT</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QLineEdit" name="iNTLineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QLabel" name="fRAC1Label">
+        <property name="text">
+         <string>FRAC1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QLineEdit" name="fRAC1LineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="0">
+       <widget class="QLabel" name="fRAC2Label">
+        <property name="text">
+         <string>FRAC2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1">
+       <widget class="QLineEdit" name="fRAC2LineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QLabel" name="mOD2Label">
+        <property name="text">
+         <string>MOD2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="1">
+       <widget class="QLineEdit" name="mOD2LineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="0">
+       <widget class="QLabel" name="mOD1Label">
+        <property name="text">
+         <string>MOD1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="1">
+       <widget class="QLineEdit" name="mOD1LineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="channelSpaceLabel">
+        <property name="text">
+         <string>ChanSpace</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="channelSpaceLineEdit"/>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="autoModeCombo">
+        <item>
+         <property name="text">
+          <string>Disable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Enable</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="features">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>10</y>
+     <width>211</width>
+     <height>451</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>Features</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QFormLayout" name="featuresLayout">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <property name="rowWrapPolicy">
+       <enum>QFormLayout::DontWrapRows</enum>
+      </property>
+      <property name="verticalSpacing">
+       <number>2</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="chargePumpCurrentLabel">
+        <property name="text">
+         <string>ChargePumpCurrent</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="chargePumpCurrentComboBox">
+        <item>
+         <property name="text">
+          <string>0.35mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>0.70mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1.05mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1.4mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1.75mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2.8mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2.45mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2.8mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>3.15mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>3.5mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>3.85mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>4.2mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>4.55mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>4.9mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>5.25mA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>5.6mA</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="phaseDetectorPolarityLabel">
+        <property name="text">
+         <string>PhaseDetectorPolarity</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="phaseDetectorPolarityComboBox">
+        <item>
+         <property name="text">
+          <string>Negative</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Positive</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="counterResetLabel">
+        <property name="text">
+         <string>CounterReset</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="counterResetComboBox">
+        <item>
+         <property name="text">
+          <string>Normal</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CounterReset</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="muteTilLockDetectLabel">
+        <property name="text">
+         <string>MuteToLockDetect</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="muteTilLockDetectComboBox">
+        <item>
+         <property name="text">
+          <string>Disable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Enable</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="synthPowerdownLabel">
+        <property name="text">
+         <string>SynthPowerDown</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="synthPowerdownComboBox">
+        <item>
+         <property name="text">
+          <string>Normal</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>PowerDown</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="chargePumpTriStateLabel">
+        <property name="text">
+         <string>ChargePumpTristate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="chargePumpTriStateComboBox">
+        <item>
+         <property name="text">
+          <string>Tristate</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Normal</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="prescalerLabel">
+        <property name="text">
+         <string>Prescaler</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QComboBox" name="prescalerComboBox">
+        <item>
+         <property name="text">
+          <string>4/5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>8/9</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="feedbackSelectLabel">
+        <property name="text">
+         <string>FeedbackSelect</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QComboBox" name="feedbackSelectComboBox">
+        <item>
+         <property name="text">
+          <string>Divider</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Fundamental</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="sDLoadEnableLabel">
+        <property name="text">
+         <string>SDLoadEnable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QLabel" name="variableModulusLabel">
+        <property name="text">
+         <string>VariableModulus</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QComboBox" name="variableModulusComboBox">
+        <item>
+         <property name="text">
+          <string>Normal</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>AuxiliarySDM</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="11" column="0">
+       <widget class="QLabel" name="fracIntOperationLabel">
+        <property name="text">
+         <string>Frac/Int</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1">
+       <widget class="QComboBox" name="fracIntOperationComboBox">
+        <item>
+         <property name="text">
+          <string>Fractional</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Int</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QLabel" name="phaseAdjustLabel_2">
+        <property name="text">
+         <string>PhaseAdjust</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="1">
+       <widget class="QComboBox" name="phaseAdjustComboBox_2">
+        <item>
+         <property name="text">
+          <string>Disable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Enable</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="13" column="0">
+       <widget class="QLabel" name="phaseWordLabel_2">
+        <property name="text">
+         <string>PhaseWord</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="1">
+       <widget class="QLineEdit" name="phaseWordLineEdit_2"/>
+      </item>
+      <item row="14" column="0">
+       <widget class="QLabel" name="autoCalEnableLabel">
+        <property name="text">
+         <string>AutoCalEnable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="1">
+       <widget class="QComboBox" name="autoCalEnableComboBox">
+        <item>
+         <property name="text">
+          <string>Disable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Enable</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="15" column="0">
+       <widget class="QLabel" name="clockDividerLabel_2">
+        <property name="text">
+         <string>ClockDivider</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="1">
+       <widget class="QComboBox" name="clockDividerComboBox_2">
+        <item>
+         <property name="text">
+          <string>Off</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Resync</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="16" column="0">
+       <widget class="QLabel" name="clkDivTimeoutUsLabel">
+        <property name="text">
+         <string>ClkDivTimeout</string>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="1">
+       <widget class="QLineEdit" name="clkDivTimeoutUsLineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="0">
+       <widget class="QLabel" name="filterModeLabel">
+        <property name="text">
+         <string>FilterMode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="1">
+       <widget class="QComboBox" name="filterModeComboBox">
+        <item>
+         <property name="text">
+          <string>Auto</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Manual</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QComboBox" name="SDLoadCombo">
+        <item>
+         <property name="text">
+          <string>Disable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Enable</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="muxout">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>180</y>
+     <width>201</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>Muxout</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_9">
+    <item>
+     <layout class="QFormLayout" name="muxoutLayout">
+      <property name="horizontalSpacing">
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>2</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="modeLabel">
+        <property name="text">
+         <string>Mode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="modeComboBox">
+        <item>
+         <property name="text">
+          <string>Tristate</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>DigitalLockDetect</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ChargePumpUp</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ChargePumpDown</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Rdiv2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>NdividerOutput</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>VCOtestModes</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Reserved</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>VCOcalibrationR</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>VCOcalibrationN</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="enableLabel">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="enableComboBox">
+        <item>
+         <property name="text">
+          <string>Data</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Muxout</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="muxoutLevelLabel">
+        <property name="text">
+         <string>MuxoutLevel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="muxoutLevelComboBox">
+        <item>
+         <property name="text">
+          <string>1.8V</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>3.3V</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="rf8">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>10</y>
+     <width>141</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>RF8</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_4">
+    <item>
+     <layout class="QFormLayout" name="rf8Layout">
+      <property name="horizontalSpacing">
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>2</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="rF8EnableLabel">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="rF8EnableComboBox">
+        <property name="contextMenuPolicy">
+         <enum>Qt::DefaultContextMenu</enum>
+        </property>
+        <item>
+         <property name="text">
+          <string>Disable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Enable</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="rF8outPowerLabel">
+        <property name="text">
+         <string>Power</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="rF8outPowerComboBox">
+        <item>
+         <property name="text">
+          <string>-4dBm</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>-1dBm</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2dBm</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>5dBm</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="rf8aux">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>80</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>RF8 Auxiliary</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_5">
+    <item>
+     <layout class="QFormLayout" name="rf8auxLayout">
+      <property name="horizontalSpacing">
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>2</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="enableLabel_rf8aux">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="enableComboBox_rf8aux">
+        <item>
+         <property name="text">
+          <string>Disable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Enable</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="freqSelLabel">
+        <property name="text">
+         <string>FreqSel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="freqSelComboBox">
+        <item>
+         <property name="text">
+          <string>Divide</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>VCO</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="powerLabel">
+        <property name="text">
+         <string>Power</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="powerComboBox"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="aclTimeout">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>10</y>
+     <width>201</width>
+     <height>161</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>ACL Timeout</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_8">
+    <item>
+     <layout class="QFormLayout" name="aclTimeoutLayout">
+      <property name="verticalSpacing">
+       <number>2</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="vCOBandDivLabel">
+        <property name="text">
+         <string>VCOBandDiv</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="vCOBandDivLineEdit"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="timeoutLabel">
+        <property name="text">
+         <string>Timeout</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="timeoutLineEdit"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="vCOACLTimeoutLabel">
+        <property name="text">
+         <string>VCOAclTimeout</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="vCOACLTimeoutLineEdit"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="synthLockTimeoutLabel">
+        <property name="text">
+         <string>SynthLockTimeout</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="synthLockTimeoutLineEdit"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="approxXTimeLabel">
+        <property name="text">
+         <string>TotalCalTime</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="approxXTimeLineEdit"/>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="tempLineEdit_2">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLineEdit" name="checkLockLineEdit_2">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QPushButton" name="dieTemp">
+        <property name="text">
+         <string>DieTemp</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QPushButton" name="lockStatus">
+        <property name="text">
+         <string>LockStatus</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="bleed">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>280</y>
+     <width>201</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>Bleed</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_10">
+    <item>
+     <layout class="QFormLayout" name="bleedLayout">
+      <property name="horizontalSpacing">
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>2</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="enableLabel_bleed">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="enableLineEdit_bleed">
+        <item>
+         <property name="text">
+          <string>Disable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Enable</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="currentLabel">
+        <property name="text">
+         <string>Current</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="currentLineEdit"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="polarityLabel">
+        <property name="text">
+         <string>Polarity</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="polarityComboBox">
+        <item>
+         <property name="text">
+          <string>Negative</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Positive</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="rf32">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>280</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>RF32</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_7">
+    <item>
+     <layout class="QFormLayout" name="rf32Layout">
+      <property name="horizontalSpacing">
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>2</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="enableLabel_rf32">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="enableComboBox_rf32">
+        <item>
+         <property name="text">
+          <string>Disable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Enable</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="biasLabel_rf32">
+        <property name="text">
+         <string>Bias</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="biasLineEdit_rf32"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="filterLabel_rf32">
+        <property name="text">
+         <string>Filter</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="filterLineEdit_rf32"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="Settings">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>370</y>
+     <width>361</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>Settings</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="3">
+     <widget class="QPushButton" name="refresh">
+      <property name="text">
+       <string>Refresh</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QComboBox" name="uartcombox"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="sPIMasterLabel">
+      <property name="text">
+       <string>SPI Master</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QComboBox" name="sPIMasterComboBox">
+      <item>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>5</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>6</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="uARTPortLabel">
+      <property name="text">
+       <string>UART Port</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QPushButton" name="writeReg">
+      <property name="text">
+       <string>Update ADF4371</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="rf16">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>180</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>RF16</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_6">
+    <item>
+     <layout class="QFormLayout" name="rf16Layout">
+      <property name="verticalSpacing">
+       <number>2</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="enableLabel_rf16">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="enableComboBox_rf16">
+        <item>
+         <property name="text">
+          <string>Disable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Enable</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="biasLabel">
+        <property name="text">
+         <string>Bias</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="biasLineEdit"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="filterLabel">
+        <property name="text">
+         <string>Filter</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="filterLineEdit"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="log">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>460</y>
+     <width>721</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>460</y>
+     <width>31</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>7</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Status:</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+ <designerdata>
+  <property name="gridDeltaX">
+   <number>10</number>
+  </property>
+  <property name="gridDeltaY">
+   <number>10</number>
+  </property>
+  <property name="gridSnapX">
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY">
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible">
+   <bool>true</bool>
+  </property>
+ </designerdata>
+</ui>
