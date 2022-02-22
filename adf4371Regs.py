@@ -1,32 +1,6 @@
 # -*- coding=utf-8 -*-
 
-import os
-import subprocess
-import time
-
-import serial
-
-def runcmd(cmd):
-    subprocess.call(cmd)
-
-
 class adf4371_regs():
-
-    def find_addr_data(self, addr):
-        for a in range(self.reg_len):
-            if addr == self.reg_addr_def[a]:
-                return self.reg_data_def[a]
-
-    def update_addr_data(self, addr, data):
-        for a in range(self.reg_len):
-            if addr == self.reg_addr_def[a]:
-                self.reg_data_def[a] = data
-
-    def calc_pfd(self, rfin, divby2, r_counter, doubler):
-        return rfin * (1 + doubler) / (1 + divby2) / r_counter
-
-    def calc_N(self, INT, FRAC1, FRAC2, MOD1, MOD2):
-        return INT + ((FRAC1 + FRAC2 / MOD2) / MOD1)
 
     def __init__(self):
         self.reg_len = 61
@@ -39,16 +13,19 @@ class adf4371_regs():
                         0x11, 0x12, 0x94, 0x3f, 0xa7, 0x04, 0x0c, 0x9e, 0x4C, 0x30, 0x00, 0x00, 0x07, 0x55, 0x00, 0x0C,
                         0x80, 0x50, 0x28, 0x00, 0xC0, 0xF4, 0x00, 0x00, 0x03, 0x60, 0x32, 0x00, 0x00]
 
+# timeout
         self.SynthLockTimeout = self.find_addr_data(0x33) & 0x1f
         self.Timeout = self.find_addr_data(0x31) | (self.find_addr_data(0x32) & 0x3 << 8)
         self.VCOAclTimeout = self.find_addr_data(0x34) & 0x1f
         self.VCOBandDiv = self.find_addr_data(0x30) & 0xff
 
+# bleed
         self.BleedCurrent = self.find_addr_data(0x26)
         self.BleedEnable = (self.find_addr_data(0x27) >> 3) & 0x1
         self.BleedPolarity = (self.find_addr_data(0x2a) >> 5) & 0x1
         print("bleed", self.BleedEnable, "-", self.BleedPolarity, "-", self.BleedCurrent)
 
+# features
         self.AutoCalEnable = (self.find_addr_data(0x12) >> 6) & 0x1
         self.ChargePumpCurrent = (self.find_addr_data(0x1e) >> 4) & 0xf
         self.ChargePumpTristate = (self.find_addr_data(0x3e) >> 2) & 0x3
@@ -68,11 +45,13 @@ class adf4371_regs():
         self.VariableModulus = (self.find_addr_data(0x2b) >> 4) & 0x1
         print("vm", self.VariableModulus)
 
+# muxout
         self.MuxEnable = (self.find_addr_data(0x20) >> 3) & 0x1
         self.MuxLevel = (self.find_addr_data(0x20) >> 2) & 0x1
         self.MuxMode = (self.find_addr_data(0x20) >> 4) & 0xf
         print(self.MuxEnable, "-", self.MuxMode, "-", self.MuxLevel)
 
+# PFD
         self.DivideBy2 = (self.find_addr_data(0x22) >> 4) & 0x1
         self.Doubler = (self.find_addr_data(0x22) >> 5) & 0x1
         self.RDivider = self.find_addr_data(0x1f) & 0x1f
@@ -80,25 +59,30 @@ class adf4371_regs():
         self.RFMode = (self.find_addr_data(0x22) >> 6) & 0x1
         print("pfd", self.DivideBy2, self.Doubler, self.RDivider, self.RF, self.RFMode)
 
+# rf16
         self.RF16Bias = (self.find_addr_data(0x70) >> 0) & 0x3
         self.RF16Enable = (self.find_addr_data(0x25) >> 3) & 0x1
         self.RF16Filter = (self.find_addr_data(0x70) >> 5) & 0x7
         print("rf16", self.RF16Enable, self.RF16Filter, self.RF16Bias)
 
+# rf32
         self.RF32Bias = (self.find_addr_data(0x71) >> 0) & 0x3
         self.RF32Enable = (self.find_addr_data(0x25) >> 4) & 0x1
         self.RF32Filter = (self.find_addr_data(0x71) >> 5) & 0x7
         print("rf32", self.RF32Enable, self.RF32Filter, self.RF32Bias)
 
+# rf8
         self.RF8Enable = (self.find_addr_data(0x25) >> 2) & 0x1
         self.RF8Power = (self.find_addr_data(0x25) >> 0) & 0x3
         print("rf8", self.RF8Enable, self.RF8Power)
 
+# rf8aux
         self.RF8AUXEnable = (self.find_addr_data(0x72) >> 3) & 0x1
         self.RF8AUXFreqSel = (self.find_addr_data(0x72) >> 6) & 0x1
         self.RF8AUXPower = (self.find_addr_data(0x72) >> 4) & 0x3
         print("rf8aux", self.RF8AUXEnable, self.RF8AUXFreqSel, self.RF8AUXPower)
 
+# vco freq
         self.Divider = (self.find_addr_data(0x24) >> 4) & 0x7
         self.FRAC1 = self.find_addr_data(0x14) | (self.find_addr_data(0x15) << 8) | (self.find_addr_data(0x16) << 16) | ((self.find_addr_data(0x17) & 0x1) << 24)
         self.FRAC2 = (self.find_addr_data(0x17) >> 1) | (self.find_addr_data(0x18) << 7)
@@ -113,149 +97,169 @@ class adf4371_regs():
         self.RF8Freq = self.VCOFreq / pow(2, self.Divider)
         print(self.PFD, "-", self.VCOFreq)
 
+    def find_addr_data(self, addr):
+        for a in range(self.reg_len):
+            if addr == self.reg_addr_def[a]:
+                return self.reg_data_def[a]
+
+    def update_addr_data(self, addr, data):
+        for a in range(self.reg_len):
+            if addr == self.reg_addr_def[a]:
+                self.reg_data_def[a] = data
+
+    def calc_pfd(self, rfin, divby2, r_counter, doubler):
+        return rfin * (1 + doubler) / (1 + divby2) / r_counter
+
+    def calc_N(self, INT, FRAC1, FRAC2, MOD1, MOD2):
+        return INT + ((FRAC1 + FRAC2 / MOD2) / MOD1)
+
     def update_regs(self):
         print("update regs begin begin begin")
-#   timeout
-        self.update_addr_data(0x30, self.VCOBandDiv & 0xff)
-        self.update_addr_data(0x31, self.Timeout & 0xff)
-        defdata = self.find_addr_data(0x32)
-        defdata |= self.Timeout >> 8 & 0x3
-        self.update_addr_data(0x32, defdata)
-
-        self.update_addr_data(0x33, self.SynthLockTimeout & 0x1f)
-        self.update_addr_data(0x34, self.VCOAclTimeout & 0x1f)
-        print("VCOBandDiv", self.VCOBandDiv)
-        print("Timeout", self.Timeout)
-        print("SynthLockTimeout", self.SynthLockTimeout)
-        print("VCOAclTimeout", self.VCOAclTimeout)
-
-#   bleed
-        defdata = self.find_addr_data(0x26)
-        defdata = self.BleedCurrent
-        self.update_addr_data(0x26, defdata)
-
-        defdata = self.find_addr_data(0x27)
-        defdata |= self.BleedEnable << 3
-        self.update_addr_data(0x27, defdata)
-
-        defdata = self.find_addr_data(0x2a)
-        defdata |= self.BleedPolarity << 5
-        self.update_addr_data(0x2a, defdata)
-
-        print("BleedEnable", self.BleedEnable)
-        print("BleedCurrent", self.BleedCurrent)
-        print("BleedPolarity", self.BleedPolarity)
-#   features
-        defdata = self.find_addr_data(0x3e)
-        defdata |= self.ChargePumpTristate << 2
-        self.update_addr_data(0x3e, defdata)
-
-        self.update_addr_data(0x35, self.ClkDivTimeout)
-
-        defdata = self.find_addr_data(0x24)
-        defdata |= self.FeedbackSelect << 7
-        self.update_addr_data(0x24, defdata)
-
-        defdata = self.find_addr_data(0x25)
-        defdata |= self.MuteToLockDetect << 7
-        self.update_addr_data(0x25, defdata)
-
-        self.update_addr_data(0x1d, (self.PhaseWord >> 16) & 0xff)
-        self.update_addr_data(0x1c, (self.PhaseWord >> 8) & 0xff)
-        self.update_addr_data(0x1b, self.PhaseWord & 0xff)
-
-        defdata = self.find_addr_data(0x1a)
-        defdata |= self.PhaseAdjust << 6
-        self.update_addr_data(0x1a, defdata)
-
-        defdata = self.find_addr_data(0x23)
-        defdata |= self.ClockDivider << 4
-        defdata |= self.FilterMode << 1
-        self.update_addr_data(0x23, defdata)
-
-        defdata = self.find_addr_data(0x12)
-        defdata |= self.AutoCalEnable << 6
-        defdata |= self.Prescaler << 5
-        self.update_addr_data(0x12, defdata)
-
-        defdata = self.find_addr_data(0x1e)
-        defdata |= self.ChargePumpCurrent << 4
-        defdata |= self.CounterReset & 0x1
-        defdata |= self.PhaseDetectorPolarity << 3
-        defdata |= self.SynthPowerDown << 2
-        self.update_addr_data(0x1e, defdata)
-
-        defdata = self.find_addr_data(0x2b)
-        defdata |= self.FracInt & 0x1
-        defdata |= self.SDLoadEnable << 2
-        defdata |= self.VariableModulus << 4
-        self.update_addr_data(0x2b, defdata)
-#   MUXOUT
-        defdata = self.find_addr_data(0x20)
-        defdata |= self.MuxEnable << 3
-        defdata |= self.MuxLevel << 2
-        defdata |= self.MuxMode << 4
-        self.update_addr_data(0x20, defdata)
-        print("MuxEnable", self.MuxEnable)
-        print("MuxLevel", self.MuxLevel)
-        print("MuxMode", self.MuxMode)
-#   pfd
-        defdata = self.find_addr_data(0x22)
-        defdata |= self.DivideBy2 << 4
-        defdata |= self.Doubler << 5
-        defdata |= self.RFMode << 6
-        self.update_addr_data(0x22, defdata)
-
-        defdata = self.find_addr_data(0x1f)
-        defdata = self.RDivider
-        self.update_addr_data(0x1f, defdata)
-        print("DivideBy2", self.DivideBy2)
-        print("Doubler", self.Doubler)
-        print("RFMode", self.RFMode)
-        print("RDivider", self.RDivider)
-        print("RF", self.RF)
-
-#   RF 8 aux 16 32
-        defdata = self.find_addr_data(0x25)
-        defdata |= self.RF16Enable << 3
-        defdata |= self.RF32Enable << 4
-        defdata |= self.RF8Enable << 2
-        defdata |= self.RF8Power
-        self.update_addr_data(0x25, defdata)
-
-        defdata = self.find_addr_data(0x70)
-        defdata |= self.RF16Bias
-        defdata |= self.RF16Filter << 5
-        self.update_addr_data(0x70, defdata)
-
-        defdata = self.find_addr_data(0x71)
-        defdata |= self.RF32Bias
-        defdata |= self.RF32Filter << 5
-        self.update_addr_data(0x71, defdata)
-
-        defdata = self.find_addr_data(0x72)
-        defdata |= self.RF8AUXEnable << 3
-        defdata |= self.RF8AUXFreqSel << 6
-        defdata |= self.RF8AUXPower << 4
-        self.update_addr_data(0x72, defdata)
-#   VCO
-        defdata = self.find_addr_data(0x24)
-        defdata |= self.Divider << 4
-        self.update_addr_data(0x24, defdata)
 
         self.update_addr_data(0x10, self.INT & 0xff)
+
         self.update_addr_data(0x11, (self.INT >> 8) & 0xff)
+
+        defdata = self.find_addr_data(0x12)
+        defdata_mask = 0x60
+        defdata &= ~defdata_mask
+        defdata |= (self.AutoCalEnable << 6) | (self.Prescaler << 5)
+        self.update_addr_data(0x12, defdata)
 
         self.update_addr_data(0x14, self.FRAC1 & 0xff)
         self.update_addr_data(0x15, (self.FRAC1 >> 8) & 0xff)
         self.update_addr_data(0x16, (self.FRAC1 >> 16) & 0xff)
-        defdata = self.find_addr_data(0x17)
+        defdata = 0 #self.find_addr_data(0x17)
         defdata |= (self.FRAC1 >> 24) & 0x1
         defdata |= (self.FRAC2 & 0x7f) << 1
         self.update_addr_data(0x17, defdata)
         self.update_addr_data(0x18, self.FRAC2 >> 7)
 
         self.update_addr_data(0x19, self.MOD2 & 0xff)
+
         defdata = self.find_addr_data(0x1a)
-        defdata |= (self.MOD2 >> 8) & 0x3f
+        defdata_mask = 0x7f
+        defdata &= ~defdata_mask
+        defdata |= ((self.MOD2 >> 8) & 0x3f) | (self.PhaseAdjust << 6)
         self.update_addr_data(0x1a, defdata)
+
+        self.update_addr_data(0x1b, self.PhaseWord & 0xff)
+
+        self.update_addr_data(0x1c, (self.PhaseWord >> 8) & 0xff)
+
+        self.update_addr_data(0x1d, (self.PhaseWord >> 16) & 0xff)
+
+        defdata = self.find_addr_data(0x1e)
+        defdata_mask = 0xfd
+        defdata &= ~defdata_mask
+        defdata |= self.ChargePumpCurrent << 4 | self.CounterReset | (self.PhaseDetectorPolarity << 3) | (self.SynthPowerDown << 2)
+        self.update_addr_data(0x1e, defdata)
+
+        defdata = self.RDivider
+        self.update_addr_data(0x1f, defdata)
+
+        defdata = self.find_addr_data(0x20)
+        defdata_mask = 0xfc
+        defdata &= ~defdata_mask
+        defdata |= self.MuxEnable << 3
+        defdata |= self.MuxLevel << 2
+        defdata |= self.MuxMode << 4
+        self.update_addr_data(0x20, defdata)
+
+        defdata = self.find_addr_data(0x22)
+        defdata_mask = 0x70
+        defdata &= ~defdata_mask
+        defdata |= self.DivideBy2 << 4
+        defdata |= self.Doubler << 5
+        defdata |= self.RFMode << 6
+        self.update_addr_data(0x22, defdata)
+
+        defdata = self.find_addr_data(0x23)
+        defdata_mask = 0x32
+        defdata &= ~defdata_mask
+        defdata |= (self.ClockDivider << 4) | (self.FilterMode << 1)
+        self.update_addr_data(0x23, defdata)
+
+        defdata = self.find_addr_data(0x24)
+        defdata_mask = 0xf0
+        defdata &= ~defdata_mask
+        defdata |= self.Divider << 4
+        defdata |= self.FeedbackSelect << 7
+        self.update_addr_data(0x24, defdata)
+
+        defdata = self.find_addr_data(0x25)
+        defdata_mask = 0x9f
+        defdata &= ~defdata_mask
+        defdata |= self.MuteToLockDetect << 7
+        defdata |= self.RF16Enable << 3
+        defdata |= self.RF32Enable << 4
+        defdata |= self.RF8Enable << 2
+        defdata |= self.RF8Power
+        self.update_addr_data(0x25, defdata)
+
+        self.update_addr_data(0x26, self.BleedCurrent)
+
+        defdata = self.find_addr_data(0x27)
+        defdata_mask = 0x04
+        defdata &= ~defdata_mask
+        defdata |= self.BleedEnable << 3
+        self.update_addr_data(0x27, defdata)
+
+        defdata = self.find_addr_data(0x2a)
+        defdata_mask = 0x20
+        defdata &= ~defdata_mask
+        defdata |= self.BleedPolarity << 5
+        self.update_addr_data(0x2a, defdata)
+
+        defdata = self.find_addr_data(0x2b)
+        defdata_mask = 0x15
+        defdata &= ~defdata_mask
+        defdata |= self.FracInt | (self.SDLoadEnable << 2) | (self.VariableModulus << 4)
+        self.update_addr_data(0x2b, defdata)
+
+        self.update_addr_data(0x30, self.VCOBandDiv & 0xff)
+
+        self.update_addr_data(0x31, self.Timeout & 0xff)
+
+        defdata = self.find_addr_data(0x32)
+        defdata_mask = 0x3
+        defdata &= ~defdata_mask
+        defdata |= self.Timeout >> 8 & 0x3
+        self.update_addr_data(0x32, defdata)
+
+        self.update_addr_data(0x33, self.SynthLockTimeout & 0x1f)
+
+        self.update_addr_data(0x34, self.VCOAclTimeout & 0x1f)
+
+        self.update_addr_data(0x35, self.ClkDivTimeout)
+
+        defdata = self.find_addr_data(0x3e)
+        defdata_mask = 0x0c
+        defdata &= ~defdata_mask
+        defdata |= self.ChargePumpTristate << 2
+        self.update_addr_data(0x3e, defdata)
+
+        defdata = self.find_addr_data(0x70)
+        defdata_mask = 0xe3
+        defdata &= ~defdata_mask
+        defdata |= self.RF16Bias
+        defdata |= self.RF16Filter << 5
+        self.update_addr_data(0x70, defdata)
+
+        defdata = self.find_addr_data(0x71)
+        defdata_mask = 0xe3
+        defdata &= ~defdata_mask
+        defdata |= self.RF32Bias
+        defdata |= self.RF32Filter << 5
+        self.update_addr_data(0x71, defdata)
+
+        defdata = self.find_addr_data(0x72)
+        defdata_mask = 0x78
+        defdata &= ~defdata_mask
+        defdata |= self.RF8AUXEnable << 3
+        defdata |= self.RF8AUXFreqSel << 6
+        defdata |= self.RF8AUXPower << 4
+        self.update_addr_data(0x72, defdata)
+
+
+

@@ -1,8 +1,7 @@
 #-*- coding : utf-8-*-
 # coding:unicode_escape
-import json
+
 import os.path
-import subprocess
 import sys
 import math
 import time
@@ -17,6 +16,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from adf4371Regs import adf4371_regs
 
 class App(QMainWindow, Ui_adf4371):
+
     adf4371 = adf4371_regs()
 
     def __init__(self):
@@ -28,6 +28,7 @@ class App(QMainWindow, Ui_adf4371):
         self.phaseAdjustComboBox_2.currentIndexChanged.connect(self.slot_phase_adjust)
         self.vCOLineEdit.textChanged.connect(self.slot_VCOFreq_changed)
         self.lockStatus.clicked.connect(self.slot_get_lock_detect_status)
+        self.dieTemp.clicked.connect(self.slot_get_temp_status)
         self.enableLineEdit_bleed.currentIndexChanged.connect(self.slot_bleed_enable_changed)
         self.update_ui_values()
         self.powerComboBox.currentIndexChanged.connect(self.debug_ui)
@@ -35,19 +36,17 @@ class App(QMainWindow, Ui_adf4371):
     def debug_ui(self):
         print("index ", self.powerComboBox.count(), self.powerComboBox.currentIndex())
 
+    def slot_get_temp_status(self):
+        pass
+
+    def slot_get_lock_detect_status(self):
+        pass
+
     def slot_bleed_enable_changed(self):
         if self.enableLineEdit_bleed.currentText() == "Enable":
             self.currentLineEdit.setEnabled(True)
         else:
             self.currentLineEdit.setEnabled(False)
-
-    def slot_get_lock_detect_status(self):
-        print(self.sPIMasterComboBox.currentText())
-        err, data = self.get_reg(self.sPIMasterComboBox.currentText(), "0x007c")
-        if err == 0:
-            self.checkLockLineEdit_2.setText(str(data))
-        else:
-            self.log.setText("get lock status failed")
 
     def gcd(m, n):
         while m != n:
@@ -93,8 +92,6 @@ class App(QMainWindow, Ui_adf4371):
 
             vco = float(self.vCOLineEdit.text())
             vco_divider = int(self.outputDividerComboBox.currentText())
-            print(vco)
-            print(vco_divider)
             rf8freq = vco / vco_divider
             self.pFDFreqLineEditRF8.setText(str(rf8freq))
             self.rF16FreqLineEdit.setText(str(vco * 2))
@@ -245,7 +242,7 @@ class App(QMainWindow, Ui_adf4371):
         self.enableComboBox.setCurrentIndex(self.adf4371.MuxEnable)
         self.muxoutLevelComboBox.setCurrentIndex(self.adf4371.MuxLevel)
 
-        # bleed
+        # Bleed
         self.enableLineEdit_bleed.setCurrentIndex(self.adf4371.BleedEnable)
         if self.adf4371.BleedEnable == "Enable":
             self.currentLineEdit.setEnabled(True)
